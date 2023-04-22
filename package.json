@@ -1,0 +1,28 @@
+{
+  "name": "leeft",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "29.5.0",
+    "@types/node": "18.15.11",
+    "@types/node-fetch": "^2.6.3",
+    "@types/semver": "7.3.13",
+    "@types/yargs": "17.0.24",
+    "jest": "29.5.0",
+    "ts-jest": "29.0.5",
+    "ts-node": "10.9.1",
+    "typescript": "5.0.3",
+    "yargs": "17.7.1"
+  },
+  "dependencies": {
+    "node-fetch": "2.6.9",
+    "semver": "7.3.8"
+  }
+}
