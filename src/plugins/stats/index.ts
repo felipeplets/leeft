@@ -45,28 +45,16 @@ function findPackageJsons(
   callback(results)
 }
 
-findPackageJsons("name", (results) => {
-  // results.forEach(result => {
-  // console.log(results)
-  // console.log("Packages: ", results.length)
-  // console.log("Packages without prefix: ", results.filter(r => !r.value.startsWith("@zensurance")).length)
-  console.log(
-    "Packages not in domains: ",
-    results.filter((r) => !r.file.includes("/domains")).length,
-  )
-  // console.log(results.filter(r => !r.file.includes("/domains")))
-  results
-    .filter((r) => r.file.includes("/domains") && !r.value.startsWith("@zens"))
-    // .map(r => r.file.replace("/Users/plets/projects/zen/zen/", ""))
-    .forEach((r) => console.log(r))
 
-  // })
-})
 
 const leeftStats: Plugin = {
   command: "stats",
   description: "Find statuses about your monorepo",
-  execute: () => { console.log("hello stats")}
+  execute: () => { 
+    findPackageJsons("name", (results) => {
+      console.log("Packages: ", results.length)
+    })
+  }
 }
 
 export default leeftStats
