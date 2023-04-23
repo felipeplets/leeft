@@ -1,3 +1,5 @@
+import { loadPlugins } from "./plugin-loader"
+
 interface Plugin {
     command: string
     description: string
@@ -6,6 +8,10 @@ interface Plugin {
 
 class Leeft {
     private plugins: Record<string, Plugin> = {}
+
+    constructor() {
+        loadPlugins(this)
+    }
 
     registerPlugin(plugin: Plugin) {
         const { command } = plugin

@@ -3,7 +3,9 @@ import { hideBin } from "yargs/helpers"
 import { Leeft } from "./leeft"
 
 const registerCommands = (leeft: Leeft): yargs.Argv => {
-    console.log(">>>", leeft.getPlugins())
+  const yargsInstance = yargs(hideBin(process.argv))
+    .scriptName("leeft")
+    .usage('$0 <cmd> [args]')
   const dynamicYargs = leeft
     .getPlugins()
     .reduce((yargsInstance, plugin) => 
@@ -15,7 +17,7 @@ const registerCommands = (leeft: Leeft): yargs.Argv => {
                 leeft.executeCommand(plugin.command, ...argv._.slice(1))
             }
         )
-  , yargs(hideBin(process.argv)))
+  , yargsInstance)
 
   return dynamicYargs
 }

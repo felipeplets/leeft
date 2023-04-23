@@ -3,8 +3,8 @@ import {loadPlugins} from "../plugin-loader"
 import { registerCommands } from "../cli"
 
 const leeft = new Leeft()
-loadPlugins(leeft)
+loadPlugins(leeft).then(() => {
+    const dynamicYargs = registerCommands(leeft)
+    dynamicYargs.help().argv
+})
 
-const dynamicYargs = registerCommands(leeft)
-
-dynamicYargs.help().argv

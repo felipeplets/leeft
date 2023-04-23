@@ -1,5 +1,7 @@
-import fs from "fs"
-import path from "path"
+import fs from "node:fs"
+import path from "node:path"
+
+import { Plugin } from "../../leeft"
 
 function findPackageJsonFiles(directoryPath: string): string[] {
   const files = fs.readdirSync(directoryPath)
@@ -60,3 +62,11 @@ findPackageJsons("name", (results) => {
 
   // })
 })
+
+const leeftStats: Plugin = {
+  command: "stats",
+  description: "Find statuses about your monorepo",
+  execute: () => { console.log("hello stats")}
+}
+
+export default leeftStats

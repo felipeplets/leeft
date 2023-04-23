@@ -2,15 +2,15 @@ import fs from "fs"
 import path from "path"
 import { Leeft } from "./leeft"
 
-const loadBuiltInPlugins = (leeft: Leeft) => {
+const loadBuiltInPlugins = async (leeft: Leeft) => {
   const pluginFolder = path.join(__dirname, "plugins")
   const pluginFiles = fs.readdirSync(pluginFolder)
 
-  pluginFiles.forEach(async file => {
-    const pluginPath = path.join(pluginFolder, file)
+  for (let pluginFile of pluginFiles) {
+    const pluginPath = path.join(pluginFolder, pluginFile)
     const plugin = (await import(pluginPath)).default
     leeft.registerPlugin(plugin)
-  })
+  }
 }
 
 const loadExternalPlugins = (leeft: Leeft, externalPlugins: string[]) => {
@@ -20,8 +20,8 @@ const loadExternalPlugins = (leeft: Leeft, externalPlugins: string[]) => {
   })
 }
 
-const loadPlugins = (leeft: Leeft, externalPlugins: string[] = []) => {
-  loadBuiltInPlugins(leeft)
+const loadPlugins = async (leeft: Leeft, externalPlugins: string[] = []) => {
+  await loadBuiltInPlugins(leeft)
   loadExternalPlugins(leeft, externalPlugins)
 }
 

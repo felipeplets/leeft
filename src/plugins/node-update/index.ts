@@ -1,5 +1,5 @@
-import fs from "fs"
-import path from "path"
+import fs from "node:fs"
+import path from "node:path"
 import semver from "semver"
 import fetch from "node-fetch"
 
@@ -44,7 +44,7 @@ const updateGithubActions = (workflowPath: string, nodeVersion: string) => {
 }
 
 const leeftNodeUpdate: Plugin = {
-    command: "node update",
+    command: "node-update",
     description: "Update Node.js version in Dockerfile, package.json, .nvmrc, and GitHub Actions",
     execute: async (nodeVersion: string = "latest") => {
         const availableNodeVersions = await getNodeVersions()
